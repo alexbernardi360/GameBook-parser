@@ -1,0 +1,50 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "GameBook",
+    "description": "A GameBook compatible with LibroGame creator (LGC3)",
+    "type": "object",
+    "properties": {
+        "chapters": {
+            "description": "Array that contains all the chapters of the GameBook",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "number": {
+                        "description": "Chapter number, unique identifier",
+                        "type": "integer",
+                        "minimum": 1
+                    },
+                    "description": {
+                        "description": "Textual content of the chapter",
+                        "type": "string"
+                    },
+                    "flag_fixed": {
+                        "description": "This paragraph is fixed, so it could not be shuffled with the rest of the book",
+                        "type": "boolean"
+                    },
+                    "flag_ending": {
+                        "description": "One of the book's ending",
+                        "type": "boolean"
+                    },
+                    "flag_deadly": {
+                        "description": "One of the book's chapters where the hero will find his death",
+                        "type": "boolean"
+                    },
+                    "next_chapters": {
+                        "description": "List of next chapters",
+                        "type": "array",
+                        "items": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "uniqueItems": true
+                    }
+                },
+                "required": [ "number", "description", "flag_fixed", "flag_ending", "flag_deadly", "next_chapters" ]
+            },
+            "uniqueItems": true
+        }
+    },
+    "required": [ "chapters" ]
+}

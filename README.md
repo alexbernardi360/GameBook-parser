@@ -1,2 +1,2 @@
 # GameBook-parser
-Parser to convert a GameBook from sqlite to json.
+Parser to convert a GameBook from SQLite to JSON.

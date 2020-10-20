@@ -1,0 +1,30 @@
+{
+  "name": "gamebook-parser",
+  "version": "1.0.0",
+  "description": "Parser to convert a GameBook from sqlite to json.",
+  "main": "GBparser.js",
+  "scripts": {
+    "start": "node GBparser.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexbernardi360/GameBook-parser.git"
+  },
+  "keywords": [
+    "GameBook",
+    "parser",
+    "LibroGame",
+    "SQLite",
+    "JSON"
+  ],
+  "author": "Alessandro Bernardi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexbernardi360/GameBook-parser/issues"
+  },
+  "homepage": "https://github.com/alexbernardi360/GameBook-parser#readme",
+  "devDependencies": {},
+  "dependencies": {
+    "sqlite3": "^5.0.0"
+  }
+}
