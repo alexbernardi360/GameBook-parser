@@ -1,10 +1,12 @@
 // Requires imported modules
 const fs    = require('fs')
 
+// Gets number of chapthers from SQLite DB
 exports.getNumberOfChapters = function(db, callback) {
     db.serialize(() => {
-        // prepare the query
+        // Preparing the query
         let query = 'SELECT COUNT(id_entity) AS number FROM T_ENTITY WHERE entity_type = "chapter"';
+        // Execution of the query
         db.get(query, (err, rows) => {
             if (err)
                 console.log(err)
@@ -13,23 +15,27 @@ exports.getNumberOfChapters = function(db, callback) {
     })
 }
 
+// Converts SQLite DB to JSON
 exports.SQLiteToJSON = function(db, totalChapters, callback) {
     db.serialize(() => {
+        // Preparing the query
         let query = 'SELECT * FROM T_ENTITY JOIN T_ENTITY_ATTRIBUTES ON T_ENTITY.id_entity = T_ENTITY_ATTRIBUTES.id_entity WHERE T_ENTITY.entity_type = \'chapter\'';
+        // Execution of the query
         db.all(query, (err, rows) => {
-            
             if (err)
                 console.log(err)
 
             var chapters = []
 
-            for (var i = 0; (i < totalChapters * 5); i+=5) {
+            console.log("Parsing the SQLite DB...")
+
+            // Chapter array creation cycle
+            for (var i = 0; (i < totalChapters * 5); i += 5) {
                 var chapter
                 var number, description, flag_ending, flag_fixed, flag_deadly, chapter_title, next_chapters
                 number = rows[i].entity_name;
-                console.log(i)
+                // Chapter creation cycle
                 for (var j = i; (j < i+5); j++) {
-                    console.log(i + ' cazzo')
                     if (rows[j].attribute_name == 'description') {
                         description = rows[j].attribute_value
                         next_chapters = findNextPossibleChapter(description)
@@ -46,9 +52,9 @@ exports.SQLiteToJSON = function(db, totalChapters, callback) {
 
                     else if (rows[j].attribute_name == 'chapter_title')
                         chapter_title = rows[j].attribute_value
-
                 }
 
+                // Creation of the object "chapter"
                 chapter = {
                     "number": number,
                     "description": description,
@@ -58,14 +64,16 @@ exports.SQLiteToJSON = function(db, totalChapters, callback) {
                     "chapter_title": chapter_title,
                     "next_chapters": next_chapters
                 }
-                //console.log(chapter)
+                // Insert the "chapter" object into the array
                 chapters.push(chapter)
             }
+            console.log("JSON created.")
             callback(chapters)
         })
     })
 }
 
+// Exports the JSON object on a file.
 exports.writeToJSON = function(chapters, title) {
     // Convert JSON object to string
     const data = JSON.stringify(chapters, null, 4)
@@ -78,6 +86,7 @@ exports.writeToJSON = function(chapters, title) {
     });
 }
 
+// Finds the next chapters in the description
 function findNextPossibleChapter(text) {
     var nextChapters = [];
     var number = '';
