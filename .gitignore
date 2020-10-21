@@ -1,2 +1,11 @@
 # Automatically added with "npn install"
 node_modules/
+
+# Ignore JSON files created by the parser from GameBooks
+*.json
+*.JSON
+
+# But not these JSON files
+!package.json
+!package-lock.json
+!gamebook.schema.json
