@@ -31,20 +31,106 @@
                         "description": "One of the book's chapters where the hero will find his death",
                         "type": "boolean"
                     },
+                    "chapter_title": {
+                        "description": "Chapter title",
+                        "type": "string"
+                    },
                     "next_chapters": {
                         "description": "List of next chapters",
                         "type": "array",
                         "items": {
                             "type": "integer",
                             "minimum": 1
-                        },
-                        "uniqueItems": true
+                        }
                     }
                 },
-                "required": [ "number", "description", "flag_fixed", "flag_ending", "flag_deadly", "next_chapters" ]
+                "required": [
+                    "number",
+                    "description",
+                    "flag_fixed",
+                    "flag_ending",
+                    "flag_deadly",
+                    "chapter_title",
+                    "next_chapters"
+                ]
             },
             "uniqueItems": true
+        },
+        "info": {
+            "description": "Information regarding the GameBook",
+            "type": "object",
+            "properties": {
+                "title": {
+                    "description": "GameBook title",
+                    "type": "string"
+                },
+                "author": {
+                    "description": "GameBook author",
+                    "type": "string"
+                },
+                "lgc_version": {
+                    "description": "Version of LGC used for the creation of the GameBook",
+                    "type": "string"
+                },
+                "version": {
+                    "description": "GameBook version",
+                    "type": "string"
+                },
+                "revision": {
+                    "description": "GameBook revision number",
+                    "type": "integer",
+                    "minimum": 1
+                }
+            },
+            "required": [
+                "title",
+                "author",
+                "lgc_version",
+                "version",
+                "revision"
+            ]
+        },
+        "intro": {
+            "description": "Contains the introduction of the GameBook",
+            "type": "object",
+            "properties": {
+                "chapter_title": {
+                    "description": "Title of the introduction",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Textual content of the introduction",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "chapter_title",
+                "description"
+            ]
+        },
+        "rules": {
+            "description": "Contains the rules of the GameBook",
+            "type": "object",
+            "properties": {
+                "chapter_title": {
+                    "description": "Title of the rules",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Textual content of the rules",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "chapter_title",
+                "description"
+            ]
         }
     },
-    "required": [ "chapters" ]
+    "required": [
+        "chapters",
+        "info",
+        "intro",
+        "rules"
+    ]
 }
