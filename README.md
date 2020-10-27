@@ -1,7 +1,8 @@
 # GameBook Parser
 
 ### Description
-A simple CLI parser written in NodeJS, to export a GameBook in SQLite database format to a JSON file.
+A simple CLI parser written in NodeJS.\
+It allows you to export a GameBook in SQLite database format to a JSON file or validate a GameBook in JSON format via JSON schema.
 
 ### Build
 Install the NodeJS dependecies

@@ -25,6 +25,7 @@
   "homepage": "https://github.com/alexbernardi360/GameBook-parser#readme",
   "devDependencies": {},
   "dependencies": {
+    "jsonschema": "^1.4.0",
     "sqlite3": "^5.0.0"
   }
 }
